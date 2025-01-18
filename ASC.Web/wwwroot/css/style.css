@@ -103,7 +103,5 @@ header.secureLayout, main.secureLayout, footer.secureLayout {
 }
 
 /* Selected Menu Item style*/
-.side-nav li.active {
-    background-color: #f5f5f5;
-}
+
 
