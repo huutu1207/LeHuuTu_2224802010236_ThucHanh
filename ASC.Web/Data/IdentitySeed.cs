@@ -3,13 +3,12 @@ using ASC.Web.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
-using NPOI.HSSF.Record.Chart;
 
 namespace ASC.Web.Data
 {
     public class IdentitySeed : IIdentitySeed
     {
-        public async Task Seed(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager , 
+        public async Task Seed(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager,
             IOptions<ApplicationSettings> options)
         {
             var roles = options.Value.Roles.Split(new char[] { ',' });
