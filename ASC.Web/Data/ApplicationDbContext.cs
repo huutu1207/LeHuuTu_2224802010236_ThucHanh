@@ -1,6 +1,7 @@
 ﻿using ASC.Model.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace ASC.Web.Data
 {
@@ -15,9 +16,7 @@ namespace ASC.Web.Data
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-
-
-
+        public virtual DbSet<Demo_LeHuuTu_Lab2> Demo_Lab2_LeHuuTu { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             Database.Migrate();
