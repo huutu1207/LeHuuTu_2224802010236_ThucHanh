@@ -15,6 +15,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ASCWebContext>();
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>((options) =>
 {
     options.User.RequireUniqueEmail = true;
@@ -40,8 +42,8 @@ builder.Services.AddTransient<ISmsSender, AuthMessageSender>();
 
 builder.Services.AddSingleton<IIdentitySeed, IdentitySeed>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddDistributedMemoryCache(); // Thêm dòng này
-builder.Services.AddSession(); // Thêm dòng này
+builder.Services.AddDistributedMemoryCache(); // Thï¿½m dï¿½ng nï¿½y
+builder.Services.AddSession(); // Thï¿½m dï¿½ng nï¿½y
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
