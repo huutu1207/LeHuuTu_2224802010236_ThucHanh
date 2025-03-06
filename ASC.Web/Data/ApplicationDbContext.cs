@@ -17,6 +17,7 @@ namespace ASC.Web.Data
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Demo_LeHuuTu_Lab2> Demo_Lab2_LeHuuTu { get; set; }
+        public virtual DbSet<Test> Test { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             Database.Migrate();

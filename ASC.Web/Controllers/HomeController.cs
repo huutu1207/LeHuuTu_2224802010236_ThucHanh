@@ -55,7 +55,7 @@ using ASC.Utilities;
 
 namespace ASC.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AnonymousController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IOptions<ApplicationSettings> _settings;
@@ -81,7 +81,7 @@ namespace ASC.Web.Controllers
             // Usage of IOptions
             ViewBag.Title = settings.ApplicationTitle;
 
-
+            //return Redirect("https://example.txt");
             return View();
         }
 
@@ -96,9 +96,6 @@ namespace ASC.Web.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Dashboard()
-        {
-            return View();
-        }
+        
     }
 }
