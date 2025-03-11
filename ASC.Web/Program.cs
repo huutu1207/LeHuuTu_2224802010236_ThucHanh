@@ -15,20 +15,27 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ASCWebContext>();
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ASCWebContext>();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>((options) =>
+//builder.Services.AddIdentity<IdentityUser, IdentityRole>((options) =>
+//{
+//    options.User.RequireUniqueEmail = true;
+//}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+//them thu
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
+    options.SignIn.RequireConfirmedAccount = true;
     options.User.RequireUniqueEmail = true;
-}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders().AddDefaultUI();
+// -->
 builder.Services.AddScoped<DbContext, ApplicationDbContext>();
 
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-/*builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();*/
+/*builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();*/
 
 builder.Services.AddOptions();
 builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("AppSettings"));
@@ -39,11 +46,13 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddTransient<IEmailSender, AuthMessageSender>();
 builder.Services.AddTransient<ISmsSender, AuthMessageSender>();
-
+//Addition lab4
+//builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+//End lab4
 builder.Services.AddSingleton<IIdentitySeed, IdentitySeed>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddDistributedMemoryCache(); // Th�m d�ng n�y
-builder.Services.AddSession(); // Th�m d�ng n�y
+builder.Services.AddDistributedMemoryCache(); 
+builder.Services.AddSession();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
