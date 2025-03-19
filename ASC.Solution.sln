@@ -5,15 +5,15 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASC.Web", "ASC.Web\ASC.Web.csproj", "{8B438B8F-E2B9-4468-A62F-B188F2F14247}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASC.Business", "ASC.Business\ASC.Business.csproj", "{AF17F9E6-8CF6-4A09-9CF6-E5B617D2985E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASC.Business", "ASC.Business\ASC.Business.csproj", "{AF17F9E6-8CF6-4A09-9CF6-E5B617D2985E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASC.DataAccess", "ASC.DataAccess\ASC.DataAccess.csproj", "{49449DA9-FC5D-42F2-9FD1-F574624528A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASC.DataAccess", "ASC.DataAccess\ASC.DataAccess.csproj", "{49449DA9-FC5D-42F2-9FD1-F574624528A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASC.Model", "ASC.Models\ASC.Model.csproj", "{2F65D9B8-3B02-4F63-A1A3-09A77F8561E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASC.Model", "ASC.Models\ASC.Model.csproj", "{2F65D9B8-3B02-4F63-A1A3-09A77F8561E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASC.Tests", "ASC.Tests\ASC.Tests.csproj", "{CDC1C353-10CD-4358-A90D-715AFF0B9C74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASC.Tests", "ASC.Tests\ASC.Tests.csproj", "{CDC1C353-10CD-4358-A90D-715AFF0B9C74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASC.Utilities", "ASC.Utilities\ASC.Utilities.csproj", "{E370328B-2F9E-44A2-94FA-A98E6B98A596}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASC.Utilities", "ASC.Utilities\ASC.Utilities.csproj", "{E370328B-2F9E-44A2-94FA-A98E6B98A596}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

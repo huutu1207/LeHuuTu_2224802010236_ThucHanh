@@ -1,7 +1,14 @@
 ﻿@using ASC.Utilities
+@using ASC.Web.Data
+   @*lay thong tin user dang nhap*@
+@inject IHttpContextAccessor UserHttpContext
+@*Lay menu*@
+@inject INavigationCacheOperations navigationCache
 @{
     Layout = "_MasterLayout";
-    var currentUser = User.GetCurrentUserDetails();
+    // var currentUser = User.GetCurrentUserDetails();
+    var currentUser = UserHttpContext.HttpContext.User.GetCurrentUserDetails();
+
 }
 
 <header class="secureLayout">
@@ -23,6 +30,7 @@
                 <a href="#!email"><span class="white-text email">@currentUser.Email</span></a>
             </div>
         </li>
+        @await Component.InvokeAsync("ASC.Web.Navigation.LeftNavigation", await navigationCache.GetNavigationCacheAsync())
         <li>
             <a class="collapsible-header" href="#!">
                 <i class="material-icons">dashboard</i>
@@ -97,6 +105,7 @@
         <form class="hide" method="post" id="logout_form" asp-area="Identity" asp-page="/Account/Logout">
             <input type="submit" value="Logout" />
         </form>
+        <form class="hide" method="post" id="resetPassword_form" asp-area="Identity" asp-page="/Account/InitiateResetPassword"></form>
     </ul>
 </header>
 
@@ -156,7 +165,11 @@
             $('#ancrLogout').click(function () {
                 $('#logout_form').submit();
             });
+            $('#ancrResetPassword').click(function () {
+                $('#resetPassword_form').submit();
+            });
         });
+
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -164,3 +177,5 @@
         });
     </script>
 }
+
+@RenderSection("Scripts", required: false)
