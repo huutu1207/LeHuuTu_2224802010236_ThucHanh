@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
+//builder.Services.AddCongfig(builder.Configuration).AddMyDependencyGroup(); //Add revise
+builder.Services.AddScoped<INavigationCacheOperations, NavigationCacheOperations>();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -53,6 +55,7 @@ builder.Services.AddSingleton<IIdentitySeed, IdentitySeed>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDistributedMemoryCache(); 
 builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -75,6 +78,9 @@ app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "areaRoute",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}");
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
@@ -87,6 +93,12 @@ using (var scope = app.Services.CreateScope())
         scope.ServiceProvider.GetService<RoleManager<IdentityRole>>(),
         scope.ServiceProvider.GetService<IOptions<ApplicationSettings>>()
     );
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var navigationCacheOperations = scope.ServiceProvider.GetRequiredService<INavigationCacheOperations>();
+    await navigationCacheOperations.CreateNavigationCacheAsync();
 }
 
 app.Run();
