@@ -9,8 +9,8 @@
     // var currentUser = User.GetCurrentUserDetails();
     var currentUser = UserHttpContext.HttpContext.User.GetCurrentUserDetails();
 
-}
 
+}
 <header class="secureLayout">
     <nav class="top-nav blue-grey lighten-1">
         <div class="nav-wrapper row valign-wrapper">
@@ -31,7 +31,7 @@
             </div>
         </li>
         @await Component.InvokeAsync("ASC.Web.Navigation.LeftNavigation", await navigationCache.GetNavigationCacheAsync())
-        
+    @*    
         <li>
             <a class="collapsible-header" href="#!">
                 <i class="material-icons">dashboard</i>
@@ -102,6 +102,7 @@
                 Logout
             </a>
         </li>
+        *@
         <!-- End -->
         <form class="hide" method="post" id="logout_form" asp-area="Identity" asp-page="/Account/Logout">
             <input type="submit" value="Logout" />

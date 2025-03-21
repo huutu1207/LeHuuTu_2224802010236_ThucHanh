@@ -2,25 +2,22 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
+using ASC.Web.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-
+ //using Microsoft.AspNetCore.Identity.UI.Services
 namespace ASC.Web.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
-
         public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -70,7 +67,7 @@ namespace ASC.Web.Areas.Identity.Pages.Account
                     values: new {
                         userId = user.Id,
                         code = encodedCode,
-                        email = Input.Email // Thêm email vào URL
+                        email = Input.Email
                     },
                     protocol: Request.Scheme);
 
