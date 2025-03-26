@@ -71,7 +71,7 @@ namespace ASC.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Vui lòng nhập email của bạn.")]
             [EmailAddress]
             public string Email { get; set; }
 
@@ -79,7 +79,7 @@ namespace ASC.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Vui lòng nhập mật khẩu của bạn.")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -117,7 +117,7 @@ namespace ASC.Web.Areas.Identity.Pages.Account
                 var user = await _userManager.FindByEmailAsync(Input.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Tài khoản không tồn tại");
                     return Page();
                 }
 
@@ -125,7 +125,7 @@ namespace ASC.Web.Areas.Identity.Pages.Account
                 var isActive = Boolean.Parse(list.SingleOrDefault(p => p.Type == "IsActive").Value);
                 if (!isActive)
                 {
-                    ModelState.AddModelError(string.Empty, "Account has been locked.");
+                    ModelState.AddModelError(string.Empty, "Tài khoản của bạn đã bị khóa");
                     return Page();
                 }
 
@@ -151,7 +151,7 @@ namespace ASC.Web.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Sai mật khẩu");
                     return Page();
                 }
             }
