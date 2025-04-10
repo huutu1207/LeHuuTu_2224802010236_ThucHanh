@@ -34,7 +34,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 // -->
 builder.Services.AddScoped<DbContext, ApplicationDbContext>();
 
-
+builder.Services.AddAuthentication()
+    .AddGoogle(options =>
+    {
+        options.ClientId = "xxx";
+        options.ClientSecret = "xxx";
+    });
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 /*builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();*/
