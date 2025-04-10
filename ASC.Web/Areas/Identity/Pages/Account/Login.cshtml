@@ -46,7 +46,29 @@
                 <div class="row center">
                     <a href="/Identity/Account/ForgotPassword">Forgot your password?</a>
                 </div>
+                
             </form>
+            <div class="col s12 md offset-m1">
+                <h6>Login using External Providers.</h6>
+                <div class="divider"></div>
+                @{
+                    var loginProviders = await SignInManager.GetExternalAuthenticationSchemesAsync();
+                    var cnt = loginProviders.Count();
+                    if (cnt != 0)
+                    {
+                        <form asp-area="Identity" asp-page="/Account/ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="formhorizontal">
+                            <div>
+                                @foreach (var provider in loginProviders)
+                                {
+                                    <button type="submit" class="btn btndefault" name="provider" value="@provider.DisplayName" title="Log in using your @provider.DisplayName account">
+                                        @provider.DisplayName
+                                    </button>
+                                }
+                            </div>
+                        </form>
+                    }
+                }
+            </div>
         </div>
     </div>
 </div>
