@@ -24,7 +24,7 @@
                         <tr>
                             <th data-field="Email">Email</th>
                             <th data-field="IsActive">Is Active</th>
-                            <th data-field="IsActiveInEdit">Is Active in Edit</th>
+                            <th data-field="IsActiveInEdit">Is Active</th>
                             <th data-field="Actions">Edit Users</th>
                         </tr>
                     </thead>
@@ -74,18 +74,17 @@
 
                 <form asp-controller="Account" asp-action="Customers" method="post" class="col s12" id="formUser">
                     <input type="hidden" asp-for="Registration.IsEdit" />
-                    <input type="hidden" asp-for="Registration.Email" />
 
                     <div class="input-field col s4">
-                        <input asp-for="Registration.Email" id="Input_Registration_Email" />
-                        <label asp-for="Registration.Email"></label>
-                    </div>
-
+                        <input asp-for="Registration.Email" id="Input_Registration_Email" readonly />
+                         <label asp-for="Registration.Email"></label>
+                     </div>
+                    
                     <div class="input-field col s4">
                         <div class="switch">
                             <label>
                                 Is Active
-                                <input asp-for="Registration.IsActive" class="validate" type="checkbox" />
+                                <input asp-for="Registration.IsActive" class="validate"  />
                                 <span class="lever"></span>
                             </label>
                         </div>
@@ -143,11 +142,16 @@
 
             // On click of Edit icon, populate the details section with details of service engineer
             $(document).on("click", ".edit", function () {
-                var user = $(this).closest('tr').DataTable().row($(this).parents('tr')).data();
-                $('#Registration.IsEdit').val('True');
+                var table = $('#tblCustomers').DataTable(); 
+                var user = table.row($(this).closest('tr')).data(); 
+                console.log(user);
+                $('#Registration_IsEdit').val('True');
                 $('#Input_Registration_Email').val(user[0]);
-                $('#Registration.IsActive').prop('checked', user[1] === 'True' ? true : false);
+                // $('#Input_Registration_Email').attr('disabled', 'disabled');
+                var isActive = user[1].toString().toLowerCase().includes('true');
+                $('#Registration_IsActive').prop('checked', isActive);
                 $('#btnSubmit').removeAttr('disabled');
+                console.log("nbnbn");
                 updateTextFields();
             });
 

@@ -74,23 +74,24 @@
                      <input type="hidden" asp-for="Registration.IsEdit" />
                      <input type="hidden" asp-for="Registration.Email" />
                     <div class="input-field col s4">
-                        <input asp-for="Registration.Email" id="Input_Registration_Email" class="validate" />
-                        <label for="Input_Registration_Email">Email</label> <!-- Chú thích cho trường Email -->
+                        <input asp-for="Registration.Email" id="Input_Registration_Email"/>
+                        <label asp-for="Registration.Email">Email</label> <!-- Chú thích cho trường Email -->
                     </div>
 
                     <div class="input-field col s4">
-                        <input asp-for="Registration.UserName" id="Input_Registration_UserName" class="validate" />
-                        <label for="Input_Registration_UserName">UserName</label> <!-- Chú thích cho trường UserName -->
+                        <input asp-for="Registration.UserName" id="Input_Registration_UserName" />
+                        <label asp-for="Registration.UserName">UserName</label> <!-- Chú thích cho trường UserName -->
+                    </div>
+
+                    
+                    <div class="input-field col s4">
+                        <input asp-for="Registration.Password" class="validate" id="Input_Registration_Password" />
+                        <label asp-for="Registration.Password"></label>
                     </div>
 
                     <div class="input-field col s4">
-                        <input asp-for="Registration.ConfirmPassword" id="Input_Registration_ConfirmPassword" class="validate" type="password" />
-                        <label for="Input_Registration_ConfirmPassword">Confirm Password</label> <!-- Chú thích cho trường Confirm Password -->
-                    </div>
-
-                    <div class="input-field col s4">
-                        <input asp-for="Registration.ConfirmPassword" id="Input_Registration_ConfirmPassword" class="validate" type="password" />
-                        <label for="Input_Registration_ConfirmPassword">Confirm Password</label> <!-- Chú thích cho trường Confirm Password -->
+                        <input asp-for="Registration.ConfirmPassword" class="validate" id="Input_Registration_ConfirmPassword" />
+                        <label asp-for="Registration.ConfirmPassword"></label> <!-- Chú thích cho trường Confirm Password -->
                     </div>
 
 
@@ -159,7 +160,7 @@
                 $('#Registration_IsEdit').val('True');
                 $('#Input_Registration_Email').val(user[0]);
                 $('#Input_Registration_Email').attr('disabled', 'disabled');
-                $('#Registration_UserName').val(user[1]);
+                $('#Input_Registration_UserName').val(user[1]);
                 $('#Registration_UserName').addClass('valid');
                 $('#Registration_IsActive').prop('checked', user[2] === 'True' ? true : false);
                 $('.btnSubmit').text('Save');

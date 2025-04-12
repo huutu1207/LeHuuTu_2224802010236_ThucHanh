@@ -43,7 +43,7 @@ namespace ASC.Web.Services
             services.AddIdentity<IdentityUser, IdentityRole>((options) =>
             {
                 options.User.RequireUniqueEmail = true;
-            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders().AddDefaultUI();
 
             // Add services
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -53,8 +53,8 @@ namespace ASC.Web.Services
 
             //Add Cache, Session
             services.AddSession();
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
-
+            //services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
             //Additional
             services.AddDistributedMemoryCache();
             services.AddSingleton<INavigationCacheOperations, NavigationCacheOperations>();

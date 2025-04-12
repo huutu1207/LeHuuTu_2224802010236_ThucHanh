@@ -9,57 +9,57 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.Services.AddCongfig(builder.Configuration).AddMyDependencyGroup(); //Add revise
-builder.Services.AddScoped<INavigationCacheOperations, NavigationCacheOperations>();
+builder.Services.AddCongfig(builder.Configuration).AddMyDependencyGroup(); //Add revise
+//builder.Services.AddScoped<INavigationCacheOperations, NavigationCacheOperations>();
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+//// Add services to the container.
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseSqlServer(connectionString));
 
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ASCWebContext>();
+////builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ASCWebContext>();
 
-//builder.Services.AddIdentity<IdentityUser, IdentityRole>((options) =>
+////builder.Services.AddIdentity<IdentityUser, IdentityRole>((options) =>
+////{
+////    options.User.RequireUniqueEmail = true;
+////}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+////them thu
+//builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 //{
+//    options.SignIn.RequireConfirmedAccount = true;
 //    options.User.RequireUniqueEmail = true;
-//}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-//them thu
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = true;
-    options.User.RequireUniqueEmail = true;
-})
-.AddEntityFrameworkStores<ApplicationDbContext>()
-.AddDefaultTokenProviders().AddDefaultUI();
-// -->
-builder.Services.AddScoped<DbContext, ApplicationDbContext>();
+//})
+//.AddEntityFrameworkStores<ApplicationDbContext>()
+//.AddDefaultTokenProviders().AddDefaultUI();
+//// -->
+//builder.Services.AddScoped<DbContext, ApplicationDbContext>();
 
-builder.Services.AddAuthentication()
-    .AddGoogle(options =>
-    {
-        options.ClientId = "xxx";
-        options.ClientSecret = "xxx";
-    });
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+//builder.Services.AddAuthentication()
+//    .AddGoogle(options =>
+//    {
+//        options.ClientId = "183357356135-alcgp0ln6sh74dlv84ncudchadivi2f6.apps.googleusercontent.//com";
+//        options.ClientSecret = "GOCSPX-0EdcukHVnWAjJtljcTRUjbZlQD//99";
+//    });
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-/*builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();*/
+///*builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();*/
 
-builder.Services.AddOptions();
-builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("AppSettings"));
+//builder.Services.AddOptions();
+//builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("AppSettings"));
 
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews();
 
-builder.Services.AddRazorPages();
+//builder.Services.AddRazorPages();
 
-builder.Services.AddTransient<IEmailSender, AuthMessageSender>();
-builder.Services.AddTransient<ISmsSender, AuthMessageSender>();
-//Addition lab4
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-//End lab4
-builder.Services.AddSingleton<IIdentitySeed, IdentitySeed>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddDistributedMemoryCache(); 
-builder.Services.AddSession();
+//builder.Services.AddTransient<IEmailSender, AuthMessageSender>();
+//builder.Services.AddTransient<ISmsSender, AuthMessageSender>();
+////Addition lab4
+//builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+////End lab4
+//builder.Services.AddSingleton<IIdentitySeed, IdentitySeed>();
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+//builder.Services.AddDistributedMemoryCache();
+//builder.Services.AddSession();
 
 var app = builder.Build();
 
