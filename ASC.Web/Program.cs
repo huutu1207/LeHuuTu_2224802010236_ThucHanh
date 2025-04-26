@@ -7,9 +7,12 @@ using ASC.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using OfficeOpenXml;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCongfig(builder.Configuration).AddMyDependencyGroup(); //Add revise
+builder.Services.AddCongfig(builder.Configuration).AddMyDependencyGroup();
+ExcelPackage.License.SetNonCommercialPersonal("Auto mobile Service Center");
+//Add revise
 //builder.Services.AddScoped<INavigationCacheOperations, NavigationCacheOperations>();
 
 //// Add services to the container.

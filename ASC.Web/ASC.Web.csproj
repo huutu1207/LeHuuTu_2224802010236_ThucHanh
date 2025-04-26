@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="EPPlus" Version="8.0.2" />
     <PackageReference Include="MailKit" Version="4.11.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.20" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.8" />
@@ -34,6 +37,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Accounts\Data\" />
+    <Folder Include="Areas\Configuration\Data\" />
+    <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Areas\ServiceRequests\Data\" />
     <Folder Include="Areas\ServiceRequests\Models\" />
   </ItemGroup>
