@@ -5,6 +5,9 @@ using ASC.Web.Configuration;
 using ASC.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using ASC.Business;
+using ASC.Business.Interfaces;
 
 namespace ASC.Web.Services
 {
@@ -50,6 +53,16 @@ namespace ASC.Web.Services
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddSingleton<IIdentitySeed, IdentitySeed>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            //Lab6
+            services.AddControllersWithViews().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
+
+            // Add MasterDataOperations
+            services.AddScoped<IMasterDataOperations, MasterDataOperations>();
+            services.AddAutoMapper(typeof(ApplicationDbContext));
 
             //Add Cache, Session
             services.AddSession();
