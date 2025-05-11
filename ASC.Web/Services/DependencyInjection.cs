@@ -32,7 +32,12 @@ namespace ASC.Web.Services
                 options.ClientId = config["Google:Identity:ClientId"];
                 options.ClientSecret = config["Google:Identity:ClientSecret"];
             });
-
+            //services. AddDistributedMemoryCache();
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = config.GetSection("CacheSettings:CacheConnectionString").Value;
+                options.InstanceName = config.GetSection("CacheSettings:CacheInstance").Value;
+            });
             return services;
         }
 
@@ -53,7 +58,8 @@ namespace ASC.Web.Services
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddSingleton<IIdentitySeed, IdentitySeed>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddScoped<IMasterDataCacheOperations, MasterDataCacheOperations>();
+            services.AddScoped<IServiceRequestOperations, ServiceRequestOperations>();
             //Lab6
             services.AddControllersWithViews().AddJsonOptions(options =>
             {
